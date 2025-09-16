@@ -30,17 +30,19 @@ const Header = () => {
     <>
       <header className={`header-sticky transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between w-full">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">A</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900">Acces Services</span>
-            </Link>
+          <div className="flex items-center justify-between w-full min-h-[70px]">
+            {/* Logo - Fixe à gauche */}
+            <div className="flex-shrink-0">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">A</span>
+                </div>
+                <span className="text-xl font-bold text-gray-900">Acces Services</span>
+              </Link>
+            </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-6 flex-1 justify-center">
+            {/* Desktop Navigation - Centré */}
+            <nav className="hidden lg:flex items-center space-x-8 flex-1 justify-center mx-8">
               {menuItems.map((item) => (
                 <Link
                   key={item.path}
@@ -54,8 +56,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden md:flex items-center">
+            {/* CTA Button - Fixe à droite avec espace */}
+            <div className="hidden md:flex items-center flex-shrink-0 ml-6">
               <a
                 href="tel:+33142010707"
                 className="btn-primary whitespace-nowrap"
