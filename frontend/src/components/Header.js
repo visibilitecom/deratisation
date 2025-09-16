@@ -55,14 +55,14 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button - Fixe à droite avec espace */}
-            <div className="hidden md:flex items-center flex-shrink-0 ml-6">
+            {/* CTA Button - Visible sur desktop */}
+            <div className="flex items-center flex-shrink-0 ml-6">
               <a
                 href="tel:+33142010707"
-                className="btn-primary whitespace-nowrap"
+                className="btn-primary whitespace-nowrap flex items-center gap-2"
               >
                 <Phone size={18} />
-                Appelle-nous
+                <span>Appelle-nous</span>
               </a>
             </div>
 
