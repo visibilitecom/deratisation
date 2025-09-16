@@ -30,7 +30,7 @@ const Header = () => {
     <>
       <header className={`header-sticky transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
