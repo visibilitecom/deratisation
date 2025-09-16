@@ -150,6 +150,13 @@
   width: 100%;
 }
 
+/* S'assurer que le bouton CTA est visible */
+.header-sticky .btn-primary {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 /* Mobile CTA bar */
 .mobile-cta-bar {
   position: fixed;
