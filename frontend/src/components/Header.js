@@ -41,7 +41,7 @@ const Header = () => {
             </div>
 
             {/* Desktop Navigation - Centré */}
-            <nav className="hidden lg:flex items-center space-x-8 flex-1 justify-center mx-8">
+            <nav className="hidden lg:flex items-center space-x-6 flex-1 justify-center mx-6">
               {menuItems.map((item) => (
                 <Link
                   key={item.path}
