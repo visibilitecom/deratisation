@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <>
       <header className={`header-sticky transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex items-center justify-between w-full min-h-[70px]">
             {/* Logo - Fixe à gauche */}
             <div className="flex-shrink-0">
