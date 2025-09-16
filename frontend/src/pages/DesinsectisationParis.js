@@ -87,9 +87,9 @@ const DesinsectisationParis = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-blue-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1425421669292-0c3da3b8f529)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
               Désinsectisation à Paris et Île-de-France
             </h1>
@@ -196,7 +196,7 @@ const DesinsectisationParis = () => {
               </div>
               
               <div className="flex items-start space-x-6">
-                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centers justify-center font-bold flex-shrink-0">
+                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   3
                 </div>
                 <div>
