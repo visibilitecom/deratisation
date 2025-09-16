@@ -89,11 +89,11 @@ const APropos = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-green-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1589979034086-5885b60c8f59)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
-              À propos d'Avcces services
+              À propos d'Acces Services
             </h1>
             <p className="section-subtitle">
               Entreprise spécialisée en dératisation, punaises de lit et désinsectisation. 
@@ -140,7 +140,7 @@ const APropos = () => {
                 </h2>
                 <div className="space-y-6">
                   <p className="text-lg text-gray-700">
-                    Avcces services est née d'une volonté simple : offrir des solutions efficaces 
+                    Acces Services est née d'une volonté simple : offrir des solutions efficaces 
                     et respectueuses contre les nuisibles, en mettant l'humain au centre de nos préoccupations.
                   </p>
                   <p className="text-gray-600">
@@ -322,7 +322,7 @@ const APropos = () => {
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Coordonnées</h3>
                 <div className="space-y-3">
                   <p className="text-gray-700">
-                    <strong>Avcces services</strong><br />
+                    <strong>Acces Services</strong><br />
                     21 rue Meynadier<br />
                     75019 Paris
                   </p>

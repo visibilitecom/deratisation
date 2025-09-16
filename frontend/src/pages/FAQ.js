@@ -132,9 +132,9 @@ const FAQ = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-blue-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1628352081506-83c43123ed6d)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
               Questions fréquentes
             </h1>

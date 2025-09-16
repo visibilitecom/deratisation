@@ -65,7 +65,7 @@ const Tarifs = () => {
 
   const paymentMethods = [
     'Espèces (sur place)',
-    'Chèque à l\'ordre d\'Avcces services',
+    'Chèque à l\'ordre d\'Acces Services',
     'Virement bancaire (professionnels)',
     'Carte bancaire (TPE disponible)'
   ];
@@ -84,9 +84,9 @@ const Tarifs = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-blue-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1425421669292-0c3da3b8f529)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
               Tarifs transparents et justes
             </h1>
@@ -298,7 +298,7 @@ const Tarifs = () => {
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <FileText size={32} className="text-purple-600 mx-auto mb-4" />
-                <h3 className="font-semibent text-gray-900 mb-3">Satisfaction garantie</h3>
+                <h3 className="font-semibold text-gray-900 mb-3">Satisfaction garantie</h3>
                 <p className="text-sm text-gray-600">
                   Si le résultat ne correspond pas, nous revenons gratuitement.
                 </p>

@@ -90,9 +90,9 @@ const Contact = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-green-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1425421669292-0c3da3b8f529)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
               Contacte-nous
             </h1>
@@ -251,7 +251,7 @@ const Contact = () => {
                     </button>
                     
                     <p className="text-xs text-gray-500 text-center">
-                      En soumettant ce formulaire, tu acceptes d'être recontacté par Avcces services 
+                      En soumettant ce formulaire, tu acceptes d'être recontacté par Acces Services 
                       pour répondre à ta demande. Tes données ne seront pas transmises à des tiers.
                     </p>
                   </form>
