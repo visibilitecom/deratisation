@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -17,27 +18,29 @@ import Contact from "./pages/Contact";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Header />
-        <main className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/deratisation-paris" element={<DeratisationParis />} />
-            <Route path="/punaises-de-lit-paris" element={<PunaisesLitParis />} />
-            <Route path="/desinsectisation-paris" element={<DesinsectisationParis />} />
-            <Route path="/secteurs-pro" element={<SecteursPro />} />
-            <Route path="/particuliers" element={<Particuliers />} />
-            <Route path="/zones-intervention" element={<ZonesIntervention />} />
-            <Route path="/tarifs" element={<Tarifs />} />
-            <Route path="/a-propos" element={<APropos />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
-    </div>
+    <HelmetProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <main className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/deratisation-paris" element={<DeratisationParis />} />
+              <Route path="/punaises-de-lit-paris" element={<PunaisesLitParis />} />
+              <Route path="/desinsectisation-paris" element={<DesinsectisationParis />} />
+              <Route path="/secteurs-pro" element={<SecteursPro />} />
+              <Route path="/particuliers" element={<Particuliers />} />
+              <Route path="/zones-intervention" element={<ZonesIntervention />} />
+              <Route path="/tarifs" element={<Tarifs />} />
+              <Route path="/a-propos" element={<APropos />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
+          <Footer />
+        </BrowserRouter>
+      </div>
+    </HelmetProvider>
   );
 }
 
