@@ -55,8 +55,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button - Visible sur desktop */}
-            <div className="flex items-center flex-shrink-0 ml-6">
+            {/* CTA Button - Visible sur desktop avec plus d'espace */}
+            <div className="flex items-center flex-shrink-0 ml-4 mr-4">
               <a
                 href="tel:+33142010707"
                 className="btn-primary whitespace-nowrap flex items-center gap-2"
