@@ -140,6 +140,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Navigation alignment */
+.header-sticky .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 /* Mobile CTA bar */
 .mobile-cta-bar {
   position: fixed;
