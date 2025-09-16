@@ -40,12 +40,12 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-6 flex-1 justify-center">
               {menuItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-sm font-medium transition-colors hover:text-green-600 ${
+                  className={`text-sm font-medium transition-colors hover:text-green-600 whitespace-nowrap ${
                     location.pathname === item.path ? 'text-green-600' : 'text-gray-700'
                   }`}
                 >
