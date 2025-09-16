@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Pages importantes
+Allow: /deratisation-paris
+Allow: /punaises-de-lit-paris
+Allow: /desinsectisation-paris
+Allow: /secteurs-pro
+Allow: /particuliers
+Allow: /zones-intervention
+Allow: /tarifs
+Allow: /a-propos
+Allow: /faq
+Allow: /contact
+
+# Sitemap
+Sitemap: https://acces-services-paris.fr/sitemap.xml
+
+# Crawl-delay (optionnel, en secondes)
+Crawl-delay: 1
