@@ -14,8 +14,8 @@
 
 /* Custom button styles */
 .btn-primary {
-  background-color: var(--avcces-primary);
-  color: var(--avcces-white);
+  background-color: #1FA77D;
+  color: white;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
@@ -26,6 +26,8 @@
   gap: 8px;
   transition: all 0.3s ease;
   white-space: nowrap;
+  min-width: auto;
+  visibility: visible;
 }
 
 .btn-primary:hover {
