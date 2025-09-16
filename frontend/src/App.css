@@ -25,6 +25,7 @@
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -45,6 +46,7 @@
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-secondary:hover {
@@ -64,6 +66,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 /* Section styling */
@@ -84,6 +87,30 @@
   font-size: 1.25rem;
   margin-bottom: 3rem;
   line-height: 1.6;
+}
+
+/* Hero background styles */
+.hero-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 /* Card styles */

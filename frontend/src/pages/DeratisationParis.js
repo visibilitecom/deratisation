@@ -56,9 +56,9 @@ const DeratisationParis = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-green-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1581578731548-c64695cc6952)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6">
               Dératisation à Paris et Île-de-France
             </h1>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, FileText } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ const Header = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">A</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">Avcces services</span>
+              <span className="text-xl font-bold text-gray-900">Acces Services</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -54,21 +54,14 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Buttons */}
-            <div className="hidden md:flex items-center space-x-4">
+            {/* CTA Button */}
+            <div className="hidden md:flex items-center">
               <a
                 href="tel:+33142010707"
-                className="btn-primary"
+                className="btn-primary whitespace-nowrap"
               >
                 <Phone size={18} />
                 Appelle-nous
-              </a>
-              <a
-                href="#contact-form"
-                className="btn-secondary"
-              >
-                <FileText size={18} />
-                Devis express
               </a>
             </div>
 
@@ -97,14 +90,10 @@ const Header = () => {
                     {item.label}
                   </Link>
                 ))}
-                <div className="px-4 py-3 space-y-2">
-                  <a href="tel:+33142010707" className="btn-primary w-full justify-center">
+                <div className="px-4 py-3">
+                  <a href="tel:+33142010707" className="btn-primary w-full justify-center whitespace-nowrap">
                     <Phone size={18} />
                     Appelle-nous
-                  </a>
-                  <a href="#contact-form" className="btn-secondary w-full justify-center">
-                    <FileText size={18} />
-                    Devis express
                   </a>
                 </div>
               </nav>
@@ -115,12 +104,11 @@ const Header = () => {
 
       {/* Mobile CTA Bar */}
       <div className="mobile-cta-bar">
-        <a href="tel:+33142010707" className="flex-1 bg-white text-green-600 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2">
+        <a href="tel:+33142010707" className="flex-1 bg-white text-green-600 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
           <Phone size={18} />
           Appel
         </a>
-        <a href="#contact-form" className="flex-1 bg-yellow-400 text-gray-900 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2">
-          <FileText size={18} />
+        <a href="#contact-form" className="flex-1 bg-yellow-400 text-gray-900 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
           Devis
         </a>
       </div>

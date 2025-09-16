@@ -74,9 +74,9 @@ const Home = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-white to-green-50 section-padding">
+      <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7)'}}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center hero-content">
             <h1 className="section-title mb-6 fade-in-up">
               Dératisation & Punaises de lit à Paris et en Île-de-France
             </h1>
@@ -212,13 +212,10 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="service-card">
-                <div className="flex items-center mb-4">
-                  <div className="flex text-yellow-400">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                  </div>
-                  <span className="ml-2 text-sm text-gray-600">({testimonial.rating}/5)</span>
+                <div className="flex text-yellow-400 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
                 </div>
                 <p className="text-gray-600 mb-4 italic">"{testimonial.comment}"</p>
                 <div className="flex items-center justify-between">
