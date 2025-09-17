@@ -55,8 +55,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button - Visible sur desktop avec plus d'espace */}
-            <div className="flex items-center flex-shrink-0 ml-4 mr-4">
+            {/* CTA Button - Masqué sur mobile, visible sur desktop */}
+            <div className="hidden lg:flex items-center flex-shrink-0 ml-4 mr-4">
               <a
                 href="tel:+33142010707"
                 className="btn-primary whitespace-nowrap flex items-center gap-2"
@@ -68,7 +68,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2"
+              className="lg:hidden p-2 flex items-center justify-center"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
