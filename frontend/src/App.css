@@ -206,51 +206,48 @@ html {
   font-display: swap;
 }
 
-/* Mobile-First LCP Critical < 2.5s */
-.hero-mobile-optimized {
-  padding: 5rem 1rem 2rem;
-  background: #f9fafb;
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  contain: layout style;
+/* Hero Section avec image de fond */
+.hero-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-.mobile-hero-title {
-  font-size: 1.875rem;
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content * {
+  color: white !important;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
-  color: #111;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
 }
 
-.mobile-hero-subtitle {
-  font-size: 1.125rem;
-  color: #666;
-  margin-bottom: 1.5rem;
-  max-width: 400px;
+.section-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  margin-bottom: 2rem;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Responsive uniquement nécessaire */
-@media (min-width: 768px) {
-  .mobile-hero-title {
-    font-size: 2.5rem;
-  }
-  .hero-mobile-optimized {
-    min-height: 70vh;
-  }
-}
-
-@media (min-width: 1024px) {
-  .mobile-hero-title {
-    font-size: 3rem;
-  }
-  .hero-mobile-optimized {
-    min-height: 80vh;
-    padding: 6rem 1rem 3rem;
-  }
 }
 
 /* Améliorer le LCP des images */
