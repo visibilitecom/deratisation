@@ -11,10 +11,9 @@ Allow: /zones-intervention
 Allow: /tarifs
 Allow: /a-propos
 Allow: /faq
-Allow: /contact
 
 # Sitemap
-Sitemap: https://acces-services-paris.fr/sitemap.xml
+Sitemap: https://phpstack-804496-5861124.cloudwaysapps.com/sitemap.xml
 
 # Crawl-delay (optionnel, en secondes)
 Crawl-delay: 1
