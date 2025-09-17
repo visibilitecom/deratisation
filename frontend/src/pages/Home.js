@@ -129,16 +129,15 @@ const Home = () => {
       />
       
       <div className="pt-20">
-        {/* Hero Section - Optimisé pour LCP */}
-        <section className="hero-section section-padding">
+        {/* Hero Section - Mobile LCP Critical */}
+        <section className="hero-mobile-optimized">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center hero-content">
-              <h1 className="hero-title mb-6">
-                Dératisation & Punaises de lit à Paris et en Île-de-France
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="mobile-hero-title">
+                Dératisation & Punaises de lit à Paris
               </h1>
-              <p className="hero-subtitle">
-                Interventions rapides et garanties pour professionnels et particuliers. 
-                Devis gratuit et solutions adaptées à tes besoins.
+              <p className="mobile-hero-subtitle">
+                Interventions rapides 7j/7. Devis gratuit.
               </p>
               
               {/* Trust Badges */}
