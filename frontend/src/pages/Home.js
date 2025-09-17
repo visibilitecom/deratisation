@@ -140,36 +140,15 @@ const Home = () => {
                 Interventions rapides 7j/7. Devis gratuit.
               </p>
               
-              {/* Trust Badges */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8 fade-in-up">
-                <span className="trust-badge">
-                  <Clock size={16} />
-                  Interventions 7j/7
-                </span>
-                <span className="trust-badge">
-                  <Shield size={16} />
-                  Conforme HACCP
-                </span>
-                <span className="trust-badge">
-                  <CheckCircle size={16} />
-                  Traçabilité
-                </span>
-                <span className="trust-badge">
-                  <Star size={16} />
-                  Garantie de résultat*
-                </span>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up">
-                <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
-                  <Phone size={20} />
-                  Appelle-nous maintenant
+              {/* CTA Mobile-First - Sans badges pour LCP */}
+              <div className="flex flex-col gap-3 justify-center">
+                <a href="tel:+33142010707" className="btn-primary text-base px-6 py-3">
+                  <Phone size={18} />
+                  Appelle maintenant
                 </a>
-                <a href="#contact-form" className="btn-secondary text-lg px-8 py-4">
-                  <FileText size={20} />
-                  Demande ton devis express
-                </a>
+                <div className="text-sm text-gray-600">
+                  ✓ 7j/7 • ✓ Devis gratuit • ✓ Intervention rapide
+                </div>
               </div>
             </div>
           </div>
