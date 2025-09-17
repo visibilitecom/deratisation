@@ -1,0 +1,33 @@
+{
+  "name": "Acces Services - Dératisation Paris",
+  "short_name": "Acces Services",
+  "description": "Dératisation & Punaises de lit à Paris et en Île-de-France",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1FA77D",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png", 
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
