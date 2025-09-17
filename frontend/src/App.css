@@ -12,7 +12,7 @@
   min-height: 100vh;
 }
 
-/* Custom button styles */
+/* Custom button styles - Performance optimized */
 .btn-primary {
   background-color: #1FA77D;
   color: white;
@@ -24,10 +24,17 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
   min-width: auto;
   visibility: visible;
+  will-change: transform;
+  backface-visibility: hidden;
+  /* Accessibilité */
+  cursor: pointer;
+  outline: none;
+  focus-visible: outline 2px solid #1FA77D;
+  focus-visible: outline-offset 2px;
 }
 
 .btn-primary:hover {
