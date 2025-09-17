@@ -34,19 +34,21 @@ function App() {
         <BrowserRouter>
           <Header />
           <main className="min-h-screen">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/deratisation-paris" element={<DeratisationParis />} />
-              <Route path="/punaises-de-lit-paris" element={<PunaisesLitParis />} />
-              <Route path="/desinsectisation-paris" element={<DesinsectisationParis />} />
-              <Route path="/secteurs-pro" element={<SecteursPro />} />
-              <Route path="/particuliers" element={<Particuliers />} />
-              <Route path="/zones-intervention" element={<ZonesIntervention />} />
-              <Route path="/tarifs" element={<Tarifs />} />
-              <Route path="/a-propos" element={<APropos />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/deratisation-paris" element={<DeratisationParis />} />
+                <Route path="/punaises-de-lit-paris" element={<PunaisesLitParis />} />
+                <Route path="/desinsectisation-paris" element={<DesinsectisationParis />} />
+                <Route path="/secteurs-pro" element={<SecteursPro />} />
+                <Route path="/particuliers" element={<Particuliers />} />
+                <Route path="/zones-intervention" element={<ZonesIntervention />} />
+                <Route path="/tarifs" element={<Tarifs />} />
+                <Route path="/a-propos" element={<APropos />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </BrowserRouter>
