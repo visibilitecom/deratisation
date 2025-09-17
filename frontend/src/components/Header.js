@@ -64,7 +64,18 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA Button - Masqué sur mobile, visible sur desktop */}
+            {/* CTA Button - Mobile simplifié */}
+            <div className="flex lg:hidden items-center flex-shrink-0 mr-2">
+              <a
+                href="tel:+33142010707"
+                className="text-green-600 font-semibold text-sm"
+                aria-label="Appeler"
+              >
+                <Phone size={16} />
+              </a>
+            </div>
+            
+            {/* CTA Button Desktop */}
             <div className="hidden lg:flex items-center flex-shrink-0 ml-4 mr-4">
               <a
                 href="tel:+33142010707"
