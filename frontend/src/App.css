@@ -173,7 +173,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Reduce motion for users with motion sensitivity */
+/* Suppression complète animations sur mobile pour LCP */
+@media (max-width: 768px) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Reduce motion pour desktop */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
