@@ -75,14 +75,14 @@ const Header = () => {
               </a>
             </div>
             
-            {/* CTA Button Desktop */}
-            <div className="hidden lg:flex items-center flex-shrink-0 ml-4 mr-4">
+            {/* CTA Button Desktop - Resserré */}
+            <div className="hidden lg:flex items-center flex-shrink-0 ml-2 mr-2">
               <a
                 href="tel:+33142010707"
-                className="btn-primary whitespace-nowrap flex items-center gap-2"
+                className="btn-primary whitespace-nowrap flex items-center gap-1 text-sm px-4 py-2"
                 aria-label="Appeler Acces Services au 01 42 01 07 07"
               >
-                <Phone size={18} aria-hidden="true" />
+                <Phone size={16} aria-hidden="true" />
                 <span>Appelle-nous</span>
               </a>
             </div>
