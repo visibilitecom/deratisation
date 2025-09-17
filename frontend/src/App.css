@@ -188,9 +188,57 @@ html {
   font-display: swap;
 }
 
-/* Critical above-the-fold content */
+/* Critical above-the-fold content - LCP optimized */
 .hero-section {
   contain: layout style paint;
+  padding-top: 5rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  color: #6b7280;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Améliorer le LCP des images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Optimisation font-display pour LCP */
+@font-face {
+  font-family: system-ui;
+  font-display: swap;
+}
+
+/* Preload state pour les éléments critiques */
+.hero-section * {
+  will-change: auto;
 }
 
 /* Improve perceived performance */
