@@ -90,23 +90,35 @@ const Header = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
-              <nav className="flex flex-col py-4">
+            <div 
+              className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t z-50"
+              id="mobile-menu"
+            >
+              <nav 
+                className="flex flex-col py-4"
+                role="navigation"
+                aria-label="Navigation mobile"
+              >
                 {menuItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-4 py-3 text-sm font-medium transition-colors hover:bg-gray-50 ${
+                    className={`px-4 py-3 text-sm font-medium transition-colors hover:bg-gray-50 focus:outline-none focus:bg-gray-50 ${
                       location.pathname === item.path ? 'text-green-600 bg-green-50' : 'text-gray-700'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
+                    aria-current={location.pathname === item.path ? 'page' : undefined}
                   >
                     {item.label}
                   </Link>
                 ))}
                 <div className="px-4 py-3">
-                  <a href="tel:+33142010707" className="btn-primary w-full justify-center whitespace-nowrap">
-                    <Phone size={18} />
+                  <a 
+                    href="tel:+33142010707" 
+                    className="btn-primary w-full justify-center whitespace-nowrap"
+                    aria-label="Appeler Acces Services au 01 42 01 07 07"
+                  >
+                    <Phone size={18} aria-hidden="true" />
                     Appelle-nous
                   </a>
                 </div>
