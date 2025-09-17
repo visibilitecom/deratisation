@@ -1,22 +1,31 @@
-// Service Worker pour optimiser les performances
-const CACHE_NAME = 'acces-services-v1';
-const STATIC_ASSETS = [
+// Service Worker optimisé pour LCP
+const CACHE_NAME = 'acces-services-v2';
+const CRITICAL_ASSETS = [
   '/',
   '/static/css/main.css',
   '/static/js/main.js',
   '/manifest.json'
 ];
 
-// Installation du Service Worker
+// Assets prioritaires pour LCP
+const LCP_CRITICAL = [
+  '/static/css/main.css',
+  '/'
+];
+
+// Installation du Service Worker - LCP prioritaire
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        return self.skipWaiting();
-      })
+    Promise.all([
+      // Cache critique en premier pour LCP
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.addAll(LCP_CRITICAL)),
+      // Puis le reste
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.addAll(CRITICAL_ASSETS))
+    ]).then(() => {
+      return self.skipWaiting();
+    })
   );
 });
 
