@@ -1,20 +1,31 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+// Homepage critique - pas de lazy loading pour LCP
 import Home from "./pages/Home";
-import DeratisationParis from "./pages/DeratisationParis";
-import PunaisesLitParis from "./pages/PunaisesLitParis";
-import DesinsectisationParis from "./pages/DesinsectisationParis";
-import SecteursPro from "./pages/SecteursPro";
-import Particuliers from "./pages/Particuliers";
-import ZonesIntervention from "./pages/ZonesIntervention";
-import Tarifs from "./pages/Tarifs";
-import APropos from "./pages/APropos";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
+
+// Lazy loading pour les autres pages (améliore LCP)
+const DeratisationParis = React.lazy(() => import("./pages/DeratisationParis"));
+const PunaisesLitParis = React.lazy(() => import("./pages/PunaisesLitParis"));
+const DesinsectisationParis = React.lazy(() => import("./pages/DesinsectisationParis"));
+const SecteursPro = React.lazy(() => import("./pages/SecteursPro"));
+const Particuliers = React.lazy(() => import("./pages/Particuliers"));
+const ZonesIntervention = React.lazy(() => import("./pages/ZonesIntervention"));
+const Tarifs = React.lazy(() => import("./pages/Tarifs"));
+const APropos = React.lazy(() => import("./pages/APropos"));
+const FAQ = React.lazy(() => import("./pages/FAQ"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+
+// Composant de loading pour LCP
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="loading-skeleton w-full max-w-4xl h-96 rounded-lg"></div>
+  </div>
+);
 
 function App() {
   return (
