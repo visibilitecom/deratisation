@@ -13,16 +13,19 @@ const LCP_CRITICAL = [
   '/'
 ];
 
-// Installation du Service Worker
+// Installation du Service Worker - LCP prioritaire
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        return self.skipWaiting();
-      })
+    Promise.all([
+      // Cache critique en premier pour LCP
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.addAll(LCP_CRITICAL)),
+      // Puis le reste
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.addAll(CRITICAL_ASSETS))
+    ]).then(() => {
+      return self.skipWaiting();
+    })
   );
 });
 
