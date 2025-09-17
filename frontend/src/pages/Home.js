@@ -129,14 +129,14 @@ const Home = () => {
       />
       
       <div className="pt-20">
-        {/* Hero Section */}
-        <section className="hero-bg section-padding" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7)'}}>
+        {/* Hero Section - Optimisé pour LCP */}
+        <section className="hero-section section-padding">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center hero-content">
-              <h1 className="section-title mb-6 fade-in-up">
+              <h1 className="hero-title mb-6">
                 Dératisation & Punaises de lit à Paris et en Île-de-France
               </h1>
-              <p className="section-subtitle fade-in-up">
+              <p className="hero-subtitle">
                 Interventions rapides et garanties pour professionnels et particuliers. 
                 Devis gratuit et solutions adaptées à tes besoins.
               </p>
