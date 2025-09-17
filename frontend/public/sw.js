@@ -1,10 +1,16 @@
-// Service Worker pour optimiser les performances
-const CACHE_NAME = 'acces-services-v1';
-const STATIC_ASSETS = [
+// Service Worker optimisé pour LCP
+const CACHE_NAME = 'acces-services-v2';
+const CRITICAL_ASSETS = [
   '/',
   '/static/css/main.css',
   '/static/js/main.js',
   '/manifest.json'
+];
+
+// Assets prioritaires pour LCP
+const LCP_CRITICAL = [
+  '/static/css/main.css',
+  '/'
 ];
 
 // Installation du Service Worker
