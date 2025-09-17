@@ -44,9 +44,9 @@ const Header = () => {
               </Link>
             </div>
 
-            {/* Desktop Navigation - Centré */}
+            {/* Desktop Navigation - Centré avec moins d'espace */}
             <nav 
-              className="hidden lg:flex items-center space-x-6 flex-1 justify-center mx-6"
+              className="hidden lg:flex items-center space-x-4 flex-1 justify-center mx-4"
               role="navigation"
               aria-label="Navigation principale"
             >
