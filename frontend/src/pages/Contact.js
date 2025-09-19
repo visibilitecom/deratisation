@@ -56,20 +56,14 @@ ${formData.nom}
     const mailtoLink = `mailto:contact@3dassistance.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
     
-    // Affichage du message de confirmation
-    setIsSubmitted(true);
-    
-    // Réinitialiser après 3 secondes
+    // Redirection vers la page de remerciement avec paramètres
     setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        nom: '',
-        telephone: '',
-        codePostal: '',
-        typeProbleme: '',
-        message: ''
+      const params = new URLSearchParams({
+        nom: formData.nom,
+        type: formData.typeProbleme
       });
-    }, 3000);
+      navigate(`/merci?${params.toString()}`);
+    }, 1000); // Délai pour que le mailto s'ouvre d'abord
   };
 
   const problemTypes = [
