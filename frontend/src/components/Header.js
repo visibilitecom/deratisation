@@ -22,7 +22,8 @@ const Header = () => {
     { path: '/desinsectisation-paris', label: 'Désinsectisation' },
     { path: '/secteurs-pro', label: 'Professionnels' },
     { path: '/particuliers', label: 'Particuliers' },
-    { path: '/tarifs', label: 'Tarifs' }
+    { path: '/tarifs', label: 'Tarifs' },
+    { path: '/contact', label: 'Contact' }
   ];
 
   return (
