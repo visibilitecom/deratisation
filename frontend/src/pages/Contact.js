@@ -336,14 +336,17 @@ ${formData.nom}
                     <div className="text-center py-12">
                       <CheckCircle size={64} className="text-green-600 mx-auto mb-6" />
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                        Demande dératisation envoyée !
+                        Email envoyé avec succès !
                       </h3>
                       <p className="text-gray-600 mb-4">
-                        Merci pour ta demande de dératisation Paris. Notre expert te recontacte sous 2h 
-                        avec une estimation personnalisée.
+                        Votre client email s'est ouvert avec votre demande pré-remplie. 
+                        Envoyez-le pour recevoir votre devis gratuit sous 2h !
                       </p>
-                      <p className="text-sm text-green-600">
-                        Urgence dératisation ? Appelle directement le 01 42 01 07 07
+                      <p className="text-sm text-green-600 font-medium">
+                        📧 Destinataire : contact@3dassistance.fr
+                      </p>
+                      <p className="text-sm text-green-600 mt-2">
+                        Urgence ? Appelle directement le 01 42 01 07 07
                       </p>
                     </div>
                   )}
