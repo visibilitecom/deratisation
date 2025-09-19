@@ -21,7 +21,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validation des champs obligatoires
@@ -30,12 +30,29 @@ const Contact = () => {
       return;
     }
     
-    // Création du message email
-    const subject = `Demande de devis - ${formData.typeProbleme}`;
-    const body = `
+    try {
+      // Envoi via API
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${backendUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Succès - Affichage du message + ouverture email
+        setIsSubmitted(true);
+        
+        // Option supplémentaire : ouvrir aussi le client email
+        const subject = `Demande de devis - ${formData.typeProbleme}`;
+        const body = `
 Bonjour,
 
-Je souhaite obtenir un devis pour :
+Je viens de soumettre une demande via votre site web :
 
 Nom : ${formData.nom}
 Téléphone : ${formData.telephone}
@@ -45,18 +62,31 @@ Type de problème : ${formData.typeProbleme}
 Message :
 ${formData.message || 'Aucun message supplémentaire'}
 
+Référence : ${result.id}
+
 Merci de me recontacter rapidement.
 
 Cordialement,
 ${formData.nom}
-    `.trim();
-    
-    // Ouverture du client email avec les données
-    const mailtoLink = `mailto:contact@acces-services.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    
-    // Affichage du message de confirmation
-    setIsSubmitted(true);
+        `.trim();
+        
+        const mailtoLink = `mailto:contact@acces-services.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Demander si l'utilisateur veut aussi ouvrir l'email
+        setTimeout(() => {
+          if (window.confirm('Voulez-vous également ouvrir votre client email pour nous envoyer votre demande par email ?')) {
+            window.location.href = mailtoLink;
+          }
+        }, 1000);
+        
+      } else {
+        alert(result.message || 'Une erreur est survenue. Veuillez réessayer.');
+      }
+      
+    } catch (error) {
+      console.error('Erreur envoi formulaire:', error);
+      alert('Erreur de connexion. Veuillez réessayer ou nous appeler directement au 01 42 01 07 07');
+    }
     
     // Réinitialiser après 5 secondes
     setTimeout(() => {
