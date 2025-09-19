@@ -48,6 +48,7 @@ function App() {
                 <Route path="/a-propos" element={<APropos />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/merci" element={<Merci />} />
               </Routes>
             </Suspense>
           </main>
