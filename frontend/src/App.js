@@ -19,6 +19,7 @@ const Tarifs = React.lazy(() => import("./pages/Tarifs"));
 const APropos = React.lazy(() => import("./pages/APropos"));
 const FAQ = React.lazy(() => import("./pages/FAQ"));
 const Contact = React.lazy(() => import("./pages/Contact"));
+const Merci = React.lazy(() => import("./pages/Merci"));
 
 // Composant de loading pour LCP
 const PageLoader = () => (
