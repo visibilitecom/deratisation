@@ -82,4 +82,11 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://phpstack-804496-5861124.cloudwaysapps.com/merci</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
