@@ -32,6 +32,16 @@ class StatusCheck(BaseModel):
     client_name: str
     timestamp: datetime = Field(default_factory=datetime.utcnow)
 
+class ContactForm(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()), alias="_id")
+    nom: str
+    telephone: str
+    codePostal: str = ""
+    typeProbleme: str
+    message: str = ""
+    timestamp: datetime = Field(default_factory=datetime.now)
+    status: str = "nouveau"
+
 class StatusCheckCreate(BaseModel):
     client_name: str
 
