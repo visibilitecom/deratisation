@@ -52,36 +52,8 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
-# Endpoint pour recevoir les formulaires de contact
-@api_router.post("/contact", response_model=dict)
-async def submit_contact_form(form_data: ContactForm):
-    """Recevoir et sauvegarder un formulaire de contact"""
-    try:
-        # Sauvegarder en base de données
-        form_dict = form_data.dict(by_alias=True)
-        result = await db.contact_forms.insert_one(form_dict)
-        
-        # Log pour debug
-        print(f"Nouveau formulaire de contact reçu: {form_data.nom} - {form_data.typeProbleme}")
-        
-        return {
-            "success": True, 
-            "message": "Votre demande a été envoyée avec succès. Nous vous recontacterons rapidement.",
-            "id": form_data.id
-        }
-    except Exception as e:
-        print(f"Erreur lors de l'envoi du formulaire: {str(e)}")
-        return {
-            "success": False, 
-            "message": "Une erreur est survenue. Veuillez réessayer ou nous appeler directement."
-        }
-
-# Endpoint pour récupérer les formulaires (admin)
-@api_router.get("/contact", response_model=List[ContactForm])
-async def get_contact_forms():
-    """Récupérer tous les formulaires de contact"""
-    forms = await db.contact_forms.find().sort("timestamp", -1).to_list(1000)
-    return [ContactForm(**form) for form in forms]
+# Backend simplifié - pas de gestion des formulaires de contact
+# Les formulaires utilisent directement mailto:
 
 # Include the router in the main app
 app.include_router(api_router)
