@@ -23,11 +23,42 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulation d'envoi - en réalité ce serait un mailto ou une API
-    console.log('Formulaire soumis:', formData);
+    
+    // Validation des champs obligatoires
+    if (!formData.nom || !formData.telephone || !formData.typeProbleme) {
+      alert('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+    
+    // Création du message email
+    const subject = `Demande de devis - ${formData.typeProbleme}`;
+    const body = `
+Bonjour,
+
+Je souhaite obtenir un devis pour :
+
+Nom : ${formData.nom}
+Téléphone : ${formData.telephone}
+Code postal : ${formData.codePostal || 'Non précisé'}
+Type de problème : ${formData.typeProbleme}
+
+Message :
+${formData.message || 'Aucun message supplémentaire'}
+
+Merci de me recontacter rapidement.
+
+Cordialement,
+${formData.nom}
+    `.trim();
+    
+    // Ouverture du client email avec les données
+    const mailtoLink = `mailto:contact@acces-services.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    
+    // Affichage du message de confirmation
     setIsSubmitted(true);
     
-    // Réinitialiser après 3 secondes
+    // Réinitialiser après 5 secondes
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -37,7 +68,7 @@ const Contact = () => {
         typeProbleme: '',
         message: ''
       });
-    }, 3000);
+    }, 5000);
   };
 
   const problemTypes = [
