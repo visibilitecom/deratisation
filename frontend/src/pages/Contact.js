@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: '',
     telephone: '',
