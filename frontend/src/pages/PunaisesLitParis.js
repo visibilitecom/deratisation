@@ -82,7 +82,7 @@ const PunaisesLitParis = () => {
                 <Phone size={20} />
                 Urgence punaises
               </a>
-              <a href="#contact-form" className="btn-secondary text-lg px-8 py-4">
+              <a href="https://www.3dassistance.fr/contact" target="_blank" rel="noopener noreferrer" className="btn-secondary text-lg px-8 py-4">
                 <FileText size={20} />
                 Devis immédiat
               </a>
