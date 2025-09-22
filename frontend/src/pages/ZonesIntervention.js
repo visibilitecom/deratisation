@@ -317,7 +317,7 @@ const ZonesIntervention = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:0142010707" className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={20} />
-              Vérifier ma zone
+              01 42 01 07 07
             </a>
             <Link to="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors inline-flex items-center gap-2">
               <FileText size={20} />
