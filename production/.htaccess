@@ -1,0 +1,139 @@
+# Configuration Production 3dassistance.fr
+# Optimisé pour React SPA + PHP Contact Form + Performance
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Force HTTPS (sécurité)
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Force www (cohérence SEO)
+    RewriteCond %{HTTP_HOST} ^3dassistance\.fr [NC]
+    RewriteRule ^(.*)$ https://www.3dassistance.fr/$1 [L,R=301]
+    
+    # Autoriser les scripts PHP (contact form)
+    RewriteRule ^send-contact\.php$ - [L]
+    RewriteRule ^test-contact\.php$ - [L]
+    
+    # Gestion React Router (SPA)
+    # Tous les fichiers/dossiers existants sont servis normalement
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Exclure les fichiers PHP de la redirection React
+    RewriteCond %{REQUEST_URI} !\.php$
+    # Rediriger vers index.html pour les routes React
+    RewriteRule . /index.html [L]
+</IfModule>
+
+# Compression GZIP aggressive pour performance
+<IfModule mod_deflate.c>
+    # Compression des types de fichiers texte
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    
+    # Compression des polices
+    AddOutputFilterByType DEFLATE font/truetype
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    
+    # Exclure les fichiers déjà compressés
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|swf|woff|woff2)$ no-gzip dont-vary
+</IfModule>
+
+# Cache des fichiers statiques pour performance
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Assets React (avec hash) - Cache très long
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    
+    # Images - Cache long
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    
+    # Polices - Cache très long
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/truetype "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Manifests et fichiers de configuration
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType text/cache-manifest "access plus 0 seconds"
+    
+    # HTML - Cache court pour permettre les mises à jour
+    ExpiresByType text/html "access plus 10 minutes"
+    
+    # PHP - Pas de cache
+    ExpiresByType application/x-httpd-php "access plus 0 seconds"
+</IfModule>
+
+# Headers de sécurité et performance
+<IfModule mod_headers.c>
+    # Sécurité
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Performance - Preload pour resources critiques
+    <FilesMatch "\.(css|js)$">
+        Header append Cache-Control "immutable"
+    </FilesMatch>
+    
+    # CORS pour le contact form
+    <FilesMatch "send-contact\.php$">
+        Header always set Access-Control-Allow-Origin "https://www.3dassistance.fr"
+        Header always set Access-Control-Allow-Methods "POST, OPTIONS"
+        Header always set Access-Control-Allow-Headers "Content-Type"
+    </FilesMatch>
+</IfModule>
+
+# Types MIME pour tous les assets
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
+AddType font/woff .woff
+AddType font/woff2 .woff2
+AddType application/json .json
+AddType application/manifest+json .webmanifest
+
+# Optimisations PHP pour contact form
+<IfModule mod_php.c>
+    php_value max_execution_time 30
+    php_value max_input_time 30
+    php_value memory_limit 64M
+    php_value post_max_size 8M
+    php_value upload_max_filesize 2M
+</IfModule>
+
+# Protection des fichiers sensibles
+<FilesMatch "\.(log|ini|conf)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Bloquer l'accès aux fichiers de développement
+<FilesMatch "\.(env|git|svn|hg|bzr)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
