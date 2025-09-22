@@ -1,0 +1,229 @@
+#!/usr/bin/env python3
+"""
+Backend Health Test Suite
+Tests the FastAPI backend endpoints to ensure proper functionality
+"""
+
+import requests
+import json
+import sys
+from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv('/app/frontend/.env')
+
+# Get backend URL from frontend environment
+BACKEND_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://deratisation-pro.preview.emergentagent.com')
+API_BASE_URL = f"{BACKEND_URL}/api"
+
+class BackendTester:
+    def __init__(self):
+        self.test_results = []
+        self.failed_tests = []
+        
+    def log_test(self, test_name, success, message, response_data=None):
+        """Log test results"""
+        result = {
+            'test': test_name,
+            'success': success,
+            'message': message,
+            'timestamp': datetime.now().isoformat(),
+            'response_data': response_data
+        }
+        self.test_results.append(result)
+        
+        if not success:
+            self.failed_tests.append(result)
+            
+        status = "✅ PASS" if success else "❌ FAIL"
+        print(f"{status} {test_name}: {message}")
+        if response_data and not success:
+            print(f"   Response: {response_data}")
+    
+    def test_root_endpoint(self):
+        """Test the root API endpoint"""
+        try:
+            response = requests.get(f"{API_BASE_URL}/", timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('message') == 'Hello World':
+                    self.log_test("Root Endpoint", True, "Root endpoint responding correctly", data)
+                    return True
+                else:
+                    self.log_test("Root Endpoint", False, f"Unexpected response content: {data}", data)
+                    return False
+            else:
+                self.log_test("Root Endpoint", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Root Endpoint", False, f"Connection error: {str(e)}")
+            return False
+    
+    def test_create_status_check(self):
+        """Test creating a status check"""
+        try:
+            test_data = {
+                "client_name": "Test Client Health Check"
+            }
+            
+            response = requests.post(
+                f"{API_BASE_URL}/status",
+                json=test_data,
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ['id', 'client_name', 'timestamp']
+                
+                if all(field in data for field in required_fields):
+                    if data['client_name'] == test_data['client_name']:
+                        self.log_test("Create Status Check", True, "Status check created successfully", data)
+                        return True, data['id']
+                    else:
+                        self.log_test("Create Status Check", False, "Client name mismatch in response", data)
+                        return False, None
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_test("Create Status Check", False, f"Missing required fields: {missing_fields}", data)
+                    return False, None
+            else:
+                self.log_test("Create Status Check", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False, None
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Create Status Check", False, f"Connection error: {str(e)}")
+            return False, None
+    
+    def test_get_status_checks(self):
+        """Test retrieving status checks"""
+        try:
+            response = requests.get(f"{API_BASE_URL}/status", timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if isinstance(data, list):
+                    self.log_test("Get Status Checks", True, f"Retrieved {len(data)} status checks", f"Count: {len(data)}")
+                    return True
+                else:
+                    self.log_test("Get Status Checks", False, "Response is not a list", data)
+                    return False
+            else:
+                self.log_test("Get Status Checks", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Get Status Checks", False, f"Connection error: {str(e)}")
+            return False
+    
+    def test_cors_headers(self):
+        """Test CORS configuration"""
+        try:
+            response = requests.options(f"{API_BASE_URL}/", timeout=10)
+            
+            cors_headers = {
+                'Access-Control-Allow-Origin': response.headers.get('Access-Control-Allow-Origin'),
+                'Access-Control-Allow-Methods': response.headers.get('Access-Control-Allow-Methods'),
+                'Access-Control-Allow-Headers': response.headers.get('Access-Control-Allow-Headers')
+            }
+            
+            if any(cors_headers.values()):
+                self.log_test("CORS Configuration", True, "CORS headers present", cors_headers)
+                return True
+            else:
+                # Try a GET request to check CORS on actual endpoint
+                response = requests.get(f"{API_BASE_URL}/", timeout=10)
+                cors_origin = response.headers.get('Access-Control-Allow-Origin')
+                if cors_origin:
+                    self.log_test("CORS Configuration", True, f"CORS origin header: {cors_origin}")
+                    return True
+                else:
+                    self.log_test("CORS Configuration", False, "No CORS headers found", cors_headers)
+                    return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("CORS Configuration", False, f"Connection error: {str(e)}")
+            return False
+    
+    def test_backend_connectivity(self):
+        """Test basic backend connectivity"""
+        try:
+            response = requests.get(BACKEND_URL, timeout=10)
+            
+            if response.status_code in [200, 404]:  # 404 is OK for root, we just need connectivity
+                self.log_test("Backend Connectivity", True, f"Backend server is reachable (HTTP {response.status_code})")
+                return True
+            else:
+                self.log_test("Backend Connectivity", False, f"Unexpected status code: {response.status_code}")
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Backend Connectivity", False, f"Cannot reach backend server: {str(e)}")
+            return False
+    
+    def run_all_tests(self):
+        """Run all backend health tests"""
+        print(f"🚀 Starting Backend Health Tests")
+        print(f"📍 Testing backend at: {API_BASE_URL}")
+        print("=" * 60)
+        
+        # Test basic connectivity first
+        connectivity_ok = self.test_backend_connectivity()
+        
+        if not connectivity_ok:
+            print("\n❌ Backend connectivity failed - skipping API tests")
+            return False
+        
+        # Test API endpoints
+        root_ok = self.test_root_endpoint()
+        create_ok, created_id = self.test_create_status_check()
+        get_ok = self.test_get_status_checks()
+        cors_ok = self.test_cors_headers()
+        
+        # Summary
+        print("\n" + "=" * 60)
+        print("📊 TEST SUMMARY")
+        print("=" * 60)
+        
+        total_tests = len(self.test_results)
+        passed_tests = total_tests - len(self.failed_tests)
+        
+        print(f"Total Tests: {total_tests}")
+        print(f"Passed: {passed_tests}")
+        print(f"Failed: {len(self.failed_tests)}")
+        
+        if self.failed_tests:
+            print("\n❌ FAILED TESTS:")
+            for test in self.failed_tests:
+                print(f"  - {test['test']}: {test['message']}")
+        
+        success_rate = (passed_tests / total_tests) * 100 if total_tests > 0 else 0
+        print(f"\nSuccess Rate: {success_rate:.1f}%")
+        
+        # Overall health assessment
+        if len(self.failed_tests) == 0:
+            print("\n✅ BACKEND HEALTH: EXCELLENT - All tests passed")
+            return True
+        elif len(self.failed_tests) <= 1:
+            print("\n⚠️  BACKEND HEALTH: GOOD - Minor issues detected")
+            return True
+        else:
+            print("\n❌ BACKEND HEALTH: POOR - Multiple issues detected")
+            return False
+
+def main():
+    """Main test execution"""
+    tester = BackendTester()
+    success = tester.run_all_tests()
+    
+    # Exit with appropriate code
+    sys.exit(0 if success else 1)
+
+if __name__ == "__main__":
+    main()
