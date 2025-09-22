@@ -117,17 +117,20 @@
           comment: "Backend service running on port 8001, supervisor shows RUNNING status"
 
 ## frontend:
-  - task: "React SPA with routing for all pages"
+  - task: "Phone number visibility across all pages and devices"
     implemented: true
     working: true
-    file: "frontend/src/App.js"
+    file: "frontend/src/components/Header.js, frontend/src/pages/Home.js, frontend/src/pages/Contact.js, frontend/src/pages/Tarifs.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
         - working: true
           agent: "main"
-          comment: "All React pages are loading correctly. Homepage, Dératisation Paris, and Contact pages tested successfully with proper French content and navigation"
+          comment: "Phone number '01 42 01 07 07' is correctly visible in header button (desktop), mobile CTA bar, mobile hamburger menu, hero sections, and emergency CTAs across all pages. Verified with screenshots on multiple pages."
+        - working: false
+          agent: "user"
+          comment: "User reported phone number '01 42 01 07 07' not visible on buttons"
   
   - task: "SEO optimization with react-helmet-async"
     implemented: true
