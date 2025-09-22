@@ -356,8 +356,8 @@ class BackendTester:
             return False
     
     def run_all_tests(self):
-        """Run all backend health tests"""
-        print(f"🚀 Starting Backend Health Tests")
+        """Run all backend health tests including contact form functionality"""
+        print(f"🚀 Starting Comprehensive Backend Tests")
         print(f"📍 Testing backend at: {API_BASE_URL}")
         print("=" * 60)
         
@@ -368,15 +368,24 @@ class BackendTester:
             print("\n❌ Backend connectivity failed - skipping API tests")
             return False
         
-        # Test API endpoints
+        # Test basic API endpoints
+        print("\n🔧 Testing Basic API Endpoints...")
         root_ok = self.test_root_endpoint()
         create_ok, created_id = self.test_create_status_check()
         get_ok = self.test_get_status_checks()
         cors_ok = self.test_cors_headers()
         
+        # Test contact form functionality
+        print("\n📧 Testing Contact Form Email Functionality...")
+        contact_valid_ok, contact_id = self.test_contact_form_valid_data()
+        contact_validation_ok = self.test_contact_form_missing_required_fields()
+        contact_minimal_ok = self.test_contact_form_minimal_data()
+        contact_format_ok = self.test_contact_form_response_format()
+        get_contacts_ok = self.test_get_contacts_endpoint()
+        
         # Summary
         print("\n" + "=" * 60)
-        print("📊 TEST SUMMARY")
+        print("📊 COMPREHENSIVE TEST SUMMARY")
         print("=" * 60)
         
         total_tests = len(self.test_results)
@@ -386,21 +395,35 @@ class BackendTester:
         print(f"Passed: {passed_tests}")
         print(f"Failed: {len(self.failed_tests)}")
         
+        # Categorize results
+        basic_tests = ['Backend Connectivity', 'Root Endpoint', 'Create Status Check', 'Get Status Checks', 'CORS Configuration']
+        contact_tests = [t['test'] for t in self.test_results if 'Contact Form' in t['test'] or 'Get Contacts' in t['test']]
+        
+        basic_failures = [t for t in self.failed_tests if t['test'] in basic_tests]
+        contact_failures = [t for t in self.failed_tests if t['test'] in contact_tests]
+        
+        print(f"\n📊 Basic API Health: {len(basic_tests) - len(basic_failures)}/{len(basic_tests)} passed")
+        print(f"📧 Contact Form Tests: {len(contact_tests) - len(contact_failures)}/{len(contact_tests)} passed")
+        
         if self.failed_tests:
             print("\n❌ FAILED TESTS:")
             for test in self.failed_tests:
                 print(f"  - {test['test']}: {test['message']}")
         
         success_rate = (passed_tests / total_tests) * 100 if total_tests > 0 else 0
-        print(f"\nSuccess Rate: {success_rate:.1f}%")
+        print(f"\nOverall Success Rate: {success_rate:.1f}%")
         
         # Overall health assessment
         if len(self.failed_tests) == 0:
             print("\n✅ BACKEND HEALTH: EXCELLENT - All tests passed")
+            print("✅ CONTACT FORM: Fully functional with email and database storage")
             return True
-        elif len(self.failed_tests) <= 1:
-            print("\n⚠️  BACKEND HEALTH: GOOD - Minor issues detected")
+        elif len(contact_failures) == 0 and len(basic_failures) <= 1:
+            print("\n⚠️  BACKEND HEALTH: GOOD - Contact form working, minor basic API issues")
             return True
+        elif len(contact_failures) > 0:
+            print("\n❌ CONTACT FORM: Issues detected - Email functionality may be impaired")
+            return False
         else:
             print("\n❌ BACKEND HEALTH: POOR - Multiple issues detected")
             return False
