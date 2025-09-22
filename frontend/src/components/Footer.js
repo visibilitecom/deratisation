@@ -170,7 +170,7 @@ const Footer = () => {
             <p className="text-sm mb-4">Intervention rapide pour situations critiques</p>
             <a href="tel:0142010707" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={18} />
-              Appelle immédiatement
+              01 42 01 07 07
             </a>
           </div>
         </div>
