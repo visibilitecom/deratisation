@@ -19,7 +19,7 @@
 2. **Noter les variables d'environnement actuelles**
    ```bash
    # Frontend
-   REACT_APP_BACKEND_URL=https://accesprox.preview.emergentagent.com
+   REACT_APP_BACKEND_URL=https://deratisation-pro.preview.emergentagent.com
    
    # Backend  
    MONGO_URL=mongodb://localhost:27017
