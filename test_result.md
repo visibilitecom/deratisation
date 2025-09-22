@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-## user_problem_statement: "Phone number '01 42 01 07 07' must be visible on buttons - user reports not seeing it"
+## user_problem_statement: "Change phone number format to tel:0142010707 and verify all buttons display 01 42 01 07 07 correctly"
 ## backend:
   - task: "FastAPI server with /api prefix"
     implemented: true
