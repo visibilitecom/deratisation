@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-## user_problem_statement: "User reported 'je ne vois pas pas les pages html' - cannot see HTML pages"
+## user_problem_statement: "Phone number '01 42 01 07 07' must be visible on buttons - user reports not seeing it"
 ## backend:
   - task: "FastAPI server with /api prefix"
     implemented: true
