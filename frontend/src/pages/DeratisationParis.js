@@ -161,7 +161,7 @@ const DeratisationParis = () => {
                   <div className="mt-8">
                     <a href="tel:0142010707" className="btn-primary">
                       <Phone size={18} />
-                      Dératisation Paris maintenant
+                      01 42 01 07 07
                     </a>
                   </div>
                 </div>
