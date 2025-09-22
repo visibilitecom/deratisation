@@ -34,8 +34,9 @@ const Contact = () => {
     setIsSubmitted(true);
     
     try {
-      // Envoi des données vers le script PHP
-      const response = await fetch('https://www.3dassistance.fr/send-email.php', {
+      // Envoi vers le backend FastAPI
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/send-contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,16 +46,18 @@ const Contact = () => {
       
       const result = await response.json();
       
-      if (result.success) {
+      if (response.ok && result.success) {
         // Succès - redirection vers la page de remerciement
+        alert('✅ ' + result.message);
         const params = new URLSearchParams({
           nom: formData.nom,
           type: formData.typeProbleme
         });
         navigate(`/merci?${params.toString()}`);
       } else {
-        // Erreur - affichage du message et fallback mailto
-        alert('Erreur lors de l\'envoi. Ouverture de votre client email...');
+        // Erreur API - affichage du message et fallback mailto
+        console.error('Erreur API:', result);
+        alert('⚠️ Problème technique. Ouverture de votre client email...');
         
         // Fallback vers mailto
         const subject = `Demande de devis - ${formData.typeProbleme}`;
@@ -91,9 +94,9 @@ ${formData.nom}
       
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
-      alert('Erreur de connexion. Ouverture de votre client email...');
+      alert('❌ Erreur de connexion. Ouverture de votre client email...');
       
-      // Fallback vers mailto en cas d'erreur
+      // Fallback vers mailto en cas d'erreur de connexion
       const subject = `Demande de devis - ${formData.typeProbleme}`;
       const body = `
 Bonjour,
@@ -124,6 +127,8 @@ ${formData.nom}
         });
         navigate(`/merci?${params.toString()}`);
       }, 1000);
+    } finally {
+      setIsSubmitted(false);
     }
   };
 
