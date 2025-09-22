@@ -99,7 +99,7 @@ const DesinsectisationParis = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
+              <a href="tel:0142010707" className="btn-primary text-lg px-8 py-4">
                 <Phone size={20} />
                 01 42 01 07 07
               </a>
@@ -264,7 +264,7 @@ const DesinsectisationParis = () => {
             Solution rapide et efficace - Devis gratuit sur site
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+33142010707" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+            <a href="tel:0142010707" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={20} />
               Appelle maintenant
             </a>

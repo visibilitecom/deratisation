@@ -38,7 +38,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-green-400 flex-shrink-0" />
-                <a href="tel:+33142010707" className="text-sm hover:text-green-400 transition-colors">
+                <a href="tel:0142010707" className="text-sm hover:text-green-400 transition-colors">
                   +33 1 42 01 07 07
                 </a>
               </div>
@@ -168,7 +168,7 @@ const Footer = () => {
           <div className="mt-8 p-6 bg-red-600 rounded-lg text-center">
             <h3 className="text-lg font-semibold mb-2">Urgence 7j/7 ?</h3>
             <p className="text-sm mb-4">Intervention rapide pour situations critiques</p>
-            <a href="tel:+33142010707" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+            <a href="tel:0142010707" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={18} />
               Appelle immédiatement
             </a>

@@ -67,7 +67,7 @@ const Header = () => {
             {/* CTA Button - Mobile simplifié */}
             <div className="flex lg:hidden items-center flex-shrink-0 mr-2">
               <a
-                href="tel:+33142010707"
+                href="tel:0142010707"
                 className="text-green-600 font-semibold text-sm"
                 aria-label="Appeler"
               >
@@ -78,7 +78,7 @@ const Header = () => {
             {/* CTA Button Desktop - Resserré */}
             <div className="hidden lg:flex items-center flex-shrink-0 ml-2 mr-2">
               <a
-                href="tel:+33142010707"
+                href="tel:0142010707"
                 className="btn-primary whitespace-nowrap flex items-center gap-1 text-sm px-4 py-2"
                 aria-label="Appeler Acces Services au 01 42 01 07 07"
               >
@@ -125,7 +125,7 @@ const Header = () => {
                 ))}
                 <div className="px-4 py-3">
                   <a 
-                    href="tel:+33142010707" 
+                    href="tel:0142010707" 
                     className="btn-primary w-full justify-center whitespace-nowrap"
                     aria-label="Appeler Acces Services au 01 42 01 07 07"
                   >
@@ -141,7 +141,7 @@ const Header = () => {
 
       {/* Mobile CTA Bar */}
       <div className="mobile-cta-bar">
-        <a href="tel:+33142010707" className="flex-1 bg-white text-green-600 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
+        <a href="tel:0142010707" className="flex-1 bg-white text-green-600 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
           <Phone size={18} />
           01 42 01 07 07
         </a>

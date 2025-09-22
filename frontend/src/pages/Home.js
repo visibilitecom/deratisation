@@ -163,7 +163,7 @@ const Home = () => {
 
               {/* CTA Buttons - Harmonisés avec autres pages */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up">
-                <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
+                <a href="tel:0142010707" className="btn-primary text-lg px-8 py-4">
                   <Phone size={20} />
                   01 42 01 07 07
                 </a>
@@ -321,7 +321,7 @@ const Home = () => {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl font-bold mb-4">Urgence dératisation Paris 7j/7 ?</h2>
             <p className="mb-6">Intervention rapide de dératisation pour situations critiques à Paris et IDF</p>
-            <a href="tel:+33142010707" className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+            <a href="tel:0142010707" className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={20} />
               Dératisation urgence : 01 42 01 07 07
             </a>

@@ -185,7 +185,7 @@ const FAQ = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
+                <a href="tel:0142010707" className="btn-primary text-lg px-8 py-4">
                   <Phone size={20} />
                   01 42 01 07 07
                 </a>
@@ -299,7 +299,7 @@ const FAQ = () => {
                   <p className="text-gray-600 text-sm mb-4">
                     Réponses immédiates de 8h à 19h en semaine, 9h à 17h le weekend
                   </p>
-                  <a href="tel:+33142010707" className="btn-primary">
+                  <a href="tel:0142010707" className="btn-primary">
                     <Phone size={18} />
                     Dératisation Paris : 01 42 01 07 07
                   </a>
@@ -326,7 +326,7 @@ const FAQ = () => {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-xl font-bold mb-2">🚨 Urgence dératisation Paris ?</h2>
             <p className="mb-4">Rats, souris, guêpes : intervention dératisation sous 2h possible à Paris</p>
-            <a href="tel:+33142010707" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+            <a href="tel:0142010707" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={18} />
               Dératisation urgence Paris
             </a>

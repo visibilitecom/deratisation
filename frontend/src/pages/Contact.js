@@ -86,7 +86,7 @@ ${formData.nom}
       title: 'Téléphone dératisation Paris',
       content: '+33 1 42 01 07 07',
       description: 'Lun-Ven: 8h-19h | Weekend: 9h-17h',
-      action: 'tel:+33142010707'
+      action: 'tel:0142010707'
     },
     {
       icon: <MapPin size={24} className="text-blue-600" />,
@@ -174,7 +174,7 @@ ${formData.nom}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
+                <a href="tel:0142010707" className="btn-primary text-lg px-8 py-4">
                   <Phone size={20} />
                   01 42 01 07 07
                 </a>
@@ -357,7 +357,7 @@ ${formData.nom}
                       Pour les situations critiques de dératisation (rats, souris, guêpes, infestation massive), 
                       appelle directement pour une intervention sous 2h à Paris.
                     </p>
-                    <a href="tel:+33142010707" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
+                    <a href="tel:0142010707" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
                       <Phone size={16} />
                       Dératisation urgence Paris
                     </a>
@@ -412,7 +412,7 @@ ${formData.nom}
             <p className="text-lg mb-6 opacity-90">
               Rats près des enfants, souris dans cuisine, infestation massive : dératisation immédiate possible à Paris
             </p>
-            <a href="tel:+33142010707" className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+            <a href="tel:0142010707" className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
               <Phone size={20} />
               Dératisation urgence Paris : 01 42 01 07 07
             </a>

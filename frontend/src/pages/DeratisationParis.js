@@ -123,7 +123,7 @@ const DeratisationParis = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
+                <a href="tel:0142010707" className="btn-primary text-lg px-8 py-4">
                   <Phone size={20} />
                   01 42 01 07 07
                 </a>
@@ -159,7 +159,7 @@ const DeratisationParis = () => {
                   </div>
                   
                   <div className="mt-8">
-                    <a href="tel:+33142010707" className="btn-primary">
+                    <a href="tel:0142010707" className="btn-primary">
                       <Phone size={18} />
                       Dératisation Paris maintenant
                     </a>
@@ -270,7 +270,7 @@ const DeratisationParis = () => {
               Dératisation d'urgence 7j/7 à Paris et en Île-de-France - Rats, souris, intervention immédiate
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+33142010707" className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+              <a href="tel:0142010707" className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
                 <Phone size={20} />
                 Dératisation Paris : 01 42 01 07 07
               </a>

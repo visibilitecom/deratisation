@@ -91,7 +91,7 @@ const Merci = () => {
                   Pour une intervention immédiate (rats, invasion massive, restaurant...)
                 </p>
                 <a 
-                  href="tel:+33142010707" 
+                  href="tel:0142010707" 
                   className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
                 >
                   <Phone size={20} />
