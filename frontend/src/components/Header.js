@@ -143,7 +143,7 @@ const Header = () => {
       <div className="mobile-cta-bar">
         <a href="tel:+33142010707" className="flex-1 bg-white text-green-600 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
           <Phone size={18} />
-          Appel
+          01 42 01 07 07
         </a>
         <a href="#contact-form" className="flex-1 bg-yellow-400 text-gray-900 text-center py-3 rounded-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
           Devis
