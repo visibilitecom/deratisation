@@ -22,7 +22,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validation des champs obligatoires
@@ -31,9 +31,34 @@ const Contact = () => {
       return;
     }
     
-    // Création du message email
-    const subject = `Demande de devis - ${formData.typeProbleme}`;
-    const body = `
+    setIsSubmitted(true);
+    
+    try {
+      // Envoi des données vers le script PHP
+      const response = await fetch('https://www.3dassistance.fr/send-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Succès - redirection vers la page de remerciement
+        const params = new URLSearchParams({
+          nom: formData.nom,
+          type: formData.typeProbleme
+        });
+        navigate(`/merci?${params.toString()}`);
+      } else {
+        // Erreur - affichage du message et fallback mailto
+        alert('Erreur lors de l\'envoi. Ouverture de votre client email...');
+        
+        // Fallback vers mailto
+        const subject = `Demande de devis - ${formData.typeProbleme}`;
+        const body = `
 Bonjour,
 
 Je souhaite obtenir un devis pour :
@@ -50,20 +75,56 @@ Merci de me recontacter rapidement.
 
 Cordialement,
 ${formData.nom}
-    `.trim();
-    
-    // Ouverture du client email avec les données
-    const mailtoLink = `mailto:contact@3dassistance.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-    
-    // Redirection vers la page de remerciement avec paramètres
-    setTimeout(() => {
-      const params = new URLSearchParams({
-        nom: formData.nom,
-        type: formData.typeProbleme
-      });
-      navigate(`/merci?${params.toString()}`);
-    }, 1000); // Délai pour que le mailto s'ouvre d'abord
+        `.trim();
+        
+        const mailtoLink = `mailto:contact@3dassistance.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+        
+        setTimeout(() => {
+          const params = new URLSearchParams({
+            nom: formData.nom,
+            type: formData.typeProbleme
+          });
+          navigate(`/merci?${params.toString()}`);
+        }, 1000);
+      }
+      
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      alert('Erreur de connexion. Ouverture de votre client email...');
+      
+      // Fallback vers mailto en cas d'erreur
+      const subject = `Demande de devis - ${formData.typeProbleme}`;
+      const body = `
+Bonjour,
+
+Je souhaite obtenir un devis pour :
+
+Nom : ${formData.nom}
+Téléphone : ${formData.telephone}
+Code postal : ${formData.codePostal || 'Non précisé'}
+Type de problème : ${formData.typeProbleme}
+
+Message :
+${formData.message || 'Aucun message supplémentaire'}
+
+Merci de me recontacter rapidement.
+
+Cordialement,
+${formData.nom}
+      `.trim();
+      
+      const mailtoLink = `mailto:contact@3dassistance.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+      
+      setTimeout(() => {
+        const params = new URLSearchParams({
+          nom: formData.nom,
+          type: formData.typeProbleme
+        });
+        navigate(`/merci?${params.toString()}`);
+      }, 1000);
+    }
   };
 
   const problemTypes = [
