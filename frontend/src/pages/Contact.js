@@ -176,7 +176,7 @@ ${formData.nom}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
                   <Phone size={20} />
-                  Dératisation Paris immédiate
+                  01 42 01 07 07
                 </a>
                 <a href="#contact-form" className="btn-secondary text-lg px-8 py-4">
                   <Mail size={20} />
