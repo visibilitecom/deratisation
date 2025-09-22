@@ -9,6 +9,10 @@ from pydantic import BaseModel, Field
 from typing import List
 import uuid
 from datetime import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from fastapi import HTTPException
 
 
 ROOT_DIR = Path(__file__).parent
