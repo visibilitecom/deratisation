@@ -84,7 +84,7 @@ ${formData.nom}
     {
       icon: <Phone size={24} className="text-green-600" />,
       title: 'Téléphone dératisation Paris',
-      content: '+33 1 42 01 07 07',
+      content: '01 42 01 07 07',
       description: 'Lun-Ven: 8h-19h | Weekend: 9h-17h',
       action: 'tel:0142010707'
     },
