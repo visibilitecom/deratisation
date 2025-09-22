@@ -245,6 +245,10 @@ async def get_contacts():
     """
     try:
         contacts = await db.contacts.find().sort('timestamp', -1).to_list(100)
+        # Convert MongoDB ObjectId to string for JSON serialization
+        for contact in contacts:
+            if '_id' in contact:
+                contact['_id'] = str(contact['_id'])
         return {"contacts": contacts}
     except Exception as e:
         logger.error(f"ERREUR GET CONTACTS: {str(e)}")
