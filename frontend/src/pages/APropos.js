@@ -327,7 +327,7 @@ const APropos = () => {
                     75019 Paris
                   </p>
                   <p className="text-gray-700">
-                    <strong>Téléphone :</strong> +33 1 42 01 07 07
+                    <strong>Téléphone :</strong> 01 42 01 07 07
                   </p>
                   <p className="text-gray-700">
                     <strong>SIRET :</strong> 44463188100034
