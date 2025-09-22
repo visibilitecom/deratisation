@@ -125,7 +125,7 @@ const SecteursPro = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="tel:+33142010707" className="btn-primary text-lg px-8 py-4">
                 <Phone size={20} />
-                Urgence professionnelle
+                01 42 01 07 07
               </a>
               <a href="https://www.3dassistance.fr/contact" target="_blank" rel="noopener noreferrer" className="btn-secondary text-lg px-8 py-4">
                 <FileText size={20} />
