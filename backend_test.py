@@ -167,6 +167,194 @@ class BackendTester:
             self.log_test("Backend Connectivity", False, f"Cannot reach backend server: {str(e)}")
             return False
     
+    def test_contact_form_valid_data(self):
+        """Test contact form endpoint with valid data"""
+        try:
+            test_data = {
+                "nom": "Jean Dupont",
+                "telephone": "01 23 45 67 89",
+                "codePostal": "75001",
+                "typeProbleme": "Dératisation rats Paris",
+                "message": "J'ai un problème de rats dans mon appartement. Pouvez-vous m'aider rapidement ?"
+            }
+            
+            response = requests.post(
+                f"{API_BASE_URL}/send-contact",
+                json=test_data,
+                headers={"Content-Type": "application/json"},
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ['success', 'message', 'contact_id']
+                
+                if all(field in data for field in required_fields):
+                    if data['success'] is True and data['contact_id']:
+                        self.log_test("Contact Form - Valid Data", True, f"Contact form submitted successfully. ID: {data['contact_id']}", data)
+                        return True, data['contact_id']
+                    else:
+                        self.log_test("Contact Form - Valid Data", False, "Success flag is False or missing contact_id", data)
+                        return False, None
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_test("Contact Form - Valid Data", False, f"Missing required response fields: {missing_fields}", data)
+                    return False, None
+            else:
+                self.log_test("Contact Form - Valid Data", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False, None
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Contact Form - Valid Data", False, f"Connection error: {str(e)}")
+            return False, None
+    
+    def test_contact_form_missing_required_fields(self):
+        """Test contact form validation with missing required fields"""
+        test_cases = [
+            {"telephone": "01 23 45 67 89", "typeProbleme": "Test", "message": "Test"},  # Missing nom
+            {"nom": "Test User", "typeProbleme": "Test", "message": "Test"},  # Missing telephone
+            {"nom": "Test User", "telephone": "01 23 45 67 89", "message": "Test"},  # Missing typeProbleme
+            {}  # Missing all required fields
+        ]
+        
+        all_passed = True
+        
+        for i, test_data in enumerate(test_cases):
+            try:
+                response = requests.post(
+                    f"{API_BASE_URL}/send-contact",
+                    json=test_data,
+                    headers={"Content-Type": "application/json"},
+                    timeout=10
+                )
+                
+                if response.status_code == 400:
+                    data = response.json()
+                    if 'detail' in data:
+                        self.log_test(f"Contact Form - Validation Test {i+1}", True, f"Proper validation error: {data['detail']}", data)
+                    else:
+                        self.log_test(f"Contact Form - Validation Test {i+1}", False, "Missing error detail in 400 response", data)
+                        all_passed = False
+                else:
+                    self.log_test(f"Contact Form - Validation Test {i+1}", False, f"Expected 400, got {response.status_code}: {response.text}", response.text)
+                    all_passed = False
+                    
+            except requests.exceptions.RequestException as e:
+                self.log_test(f"Contact Form - Validation Test {i+1}", False, f"Connection error: {str(e)}")
+                all_passed = False
+        
+        return all_passed
+    
+    def test_contact_form_minimal_data(self):
+        """Test contact form with minimal required data only"""
+        try:
+            test_data = {
+                "nom": "Marie Martin",
+                "telephone": "01 42 01 07 07",
+                "typeProbleme": "Test - Dératisation souris Paris"
+                # No codePostal or message (optional fields)
+            }
+            
+            response = requests.post(
+                f"{API_BASE_URL}/send-contact",
+                json=test_data,
+                headers={"Content-Type": "application/json"},
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('success') is True and data.get('contact_id'):
+                    self.log_test("Contact Form - Minimal Data", True, f"Minimal data accepted. ID: {data['contact_id']}", data)
+                    return True
+                else:
+                    self.log_test("Contact Form - Minimal Data", False, "Success flag is False or missing contact_id", data)
+                    return False
+            else:
+                self.log_test("Contact Form - Minimal Data", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Contact Form - Minimal Data", False, f"Connection error: {str(e)}")
+            return False
+    
+    def test_get_contacts_endpoint(self):
+        """Test the admin contacts retrieval endpoint"""
+        try:
+            response = requests.get(f"{API_BASE_URL}/contacts", timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if 'contacts' in data and isinstance(data['contacts'], list):
+                    self.log_test("Get Contacts Endpoint", True, f"Retrieved {len(data['contacts'])} contacts from database", f"Count: {len(data['contacts'])}")
+                    return True
+                else:
+                    self.log_test("Get Contacts Endpoint", False, "Response missing 'contacts' field or not a list", data)
+                    return False
+            else:
+                self.log_test("Get Contacts Endpoint", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Get Contacts Endpoint", False, f"Connection error: {str(e)}")
+            return False
+    
+    def test_contact_form_response_format(self):
+        """Test that contact form response matches expected format"""
+        try:
+            test_data = {
+                "nom": "Pierre Durand",
+                "telephone": "01 23 45 67 89",
+                "codePostal": "75002",
+                "typeProbleme": "Test - Dératisation cafards Paris",
+                "message": "Test de format de réponse"
+            }
+            
+            response = requests.post(
+                f"{API_BASE_URL}/send-contact",
+                json=test_data,
+                headers={"Content-Type": "application/json"},
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Check required response format
+                expected_fields = ['success', 'message', 'contact_id']
+                optional_fields = ['note']  # For email fallback scenarios
+                
+                has_required = all(field in data for field in expected_fields)
+                success_is_bool = isinstance(data.get('success'), bool)
+                message_is_string = isinstance(data.get('message'), str)
+                contact_id_is_string = isinstance(data.get('contact_id'), str)
+                
+                if has_required and success_is_bool and message_is_string and contact_id_is_string:
+                    self.log_test("Contact Form - Response Format", True, "Response format matches expected structure", data)
+                    return True
+                else:
+                    issues = []
+                    if not has_required:
+                        missing = [f for f in expected_fields if f not in data]
+                        issues.append(f"Missing fields: {missing}")
+                    if not success_is_bool:
+                        issues.append(f"'success' should be boolean, got {type(data.get('success'))}")
+                    if not message_is_string:
+                        issues.append(f"'message' should be string, got {type(data.get('message'))}")
+                    if not contact_id_is_string:
+                        issues.append(f"'contact_id' should be string, got {type(data.get('contact_id'))}")
+                    
+                    self.log_test("Contact Form - Response Format", False, f"Format issues: {'; '.join(issues)}", data)
+                    return False
+            else:
+                self.log_test("Contact Form - Response Format", False, f"HTTP {response.status_code}: {response.text}", response.text)
+                return False
+                
+        except requests.exceptions.RequestException as e:
+            self.log_test("Contact Form - Response Format", False, f"Connection error: {str(e)}")
+            return False
+    
     def run_all_tests(self):
         """Run all backend health tests"""
         print(f"🚀 Starting Backend Health Tests")
