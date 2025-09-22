@@ -228,15 +228,15 @@ class BackendTester:
                     timeout=10
                 )
                 
-                if response.status_code == 400:
+                if response.status_code == 422:  # FastAPI/Pydantic returns 422 for validation errors
                     data = response.json()
                     if 'detail' in data:
-                        self.log_test(f"Contact Form - Validation Test {i+1}", True, f"Proper validation error: {data['detail']}", data)
+                        self.log_test(f"Contact Form - Validation Test {i+1}", True, f"Proper validation error: {data['detail'][0]['msg'] if isinstance(data['detail'], list) else data['detail']}", data)
                     else:
-                        self.log_test(f"Contact Form - Validation Test {i+1}", False, "Missing error detail in 400 response", data)
+                        self.log_test(f"Contact Form - Validation Test {i+1}", False, "Missing error detail in 422 response", data)
                         all_passed = False
                 else:
-                    self.log_test(f"Contact Form - Validation Test {i+1}", False, f"Expected 400, got {response.status_code}: {response.text}", response.text)
+                    self.log_test(f"Contact Form - Validation Test {i+1}", False, f"Expected 422, got {response.status_code}: {response.text}", response.text)
                     all_passed = False
                     
             except requests.exceptions.RequestException as e:
