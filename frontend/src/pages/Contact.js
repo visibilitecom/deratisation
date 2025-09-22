@@ -34,9 +34,15 @@ const Contact = () => {
     setIsSubmitted(true);
     
     try {
-      // Envoi vers le backend FastAPI
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await fetch(`${backendUrl}/api/send-contact`, {
+      // Déterminer l'URL selon l'environnement
+      const isProduction = window.location.hostname === 'www.3dassistance.fr' || window.location.hostname === '3dassistance.fr';
+      const apiUrl = isProduction 
+        ? 'https://www.3dassistance.fr/send-contact.php'  // Production : script PHP
+        : `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001'}/api/send-contact`;  // Développement : FastAPI
+      
+      console.log('Envoi vers:', apiUrl);
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
