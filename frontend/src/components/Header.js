@@ -130,7 +130,7 @@ const Header = () => {
                     aria-label="Appeler Acces Services au 01 42 01 07 07"
                   >
                     <Phone size={18} aria-hidden="true" />
-                    Appelle-nous
+                    01 42 01 07 07
                   </a>
                 </div>
               </nav>
